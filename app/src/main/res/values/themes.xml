@@ -1,0 +1,10 @@
+<resources>
+    <!-- זה השם של ה־Theme הראשי שלך, כמו שהגדרת ב־AndroidManifest -->
+    <style name="Theme.TrainingWeaver" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- צבע הרקע של ה־AppBar / Toolbar -->
+        <item name="colorPrimary">@color/black</item>
+        <!-- צבע הטקסט / האייקונים שעליו -->
+        <item name="colorOnPrimary">@color/ic_training_weaver_bg</item>
+        <!-- אם אתה משתמש ב־MaterialToolbar, זה יטפל גם בו אוטומטית -->
+    </style>
+</resources>

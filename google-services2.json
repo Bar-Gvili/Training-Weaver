@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "54921465012",
+    "project_id": "training-weaver",
+    "storage_bucket": "training-weaver.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:54921465012:android:62925f65bc42a03e9f1be1",
+        "android_client_info": {
+          "package_name": "com.example.training_weaver"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "54921465012-f0pddamiknb6o0t98t12e4pvblictiur.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBGaL49fpbDsuCJGBFkqbvN8T-SWKD9Izc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "54921465012-f0pddamiknb6o0t98t12e4pvblictiur.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

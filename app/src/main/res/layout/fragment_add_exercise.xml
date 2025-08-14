@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="@color/ic_training_weaver_bg_lighter">
+
+    <!-- כותרת למעלה -->
+    <TextView
+        android:id="@+id/header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="60dp"
+        android:text="Add Exercise to Database"
+        android:textSize="20sp" />
+
+    <!-- טופס הזנת פרטי תרגיל -->
+    <LinearLayout
+        android:id="@+id/form_container"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="120dp"
+        android:layout_gravity="top"
+        android:gravity="center_horizontal">
+
+        <EditText
+            android:id="@+id/etExerciseName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Exercise Name (must)"
+            android:importantForAutofill="yes"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/etExerciseUrl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:hint="URL (must)"
+            android:inputType="textUri" />
+
+        <EditText
+            android:id="@+id/etExerciseDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:hint="Exercise Description (optional)"
+            android:inputType="textMultiLine"
+            android:maxLines="5"
+            android:minLines="3" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnAddExercise"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="50dp"
+        android:text="Add"
+        android:textColor="@color/ic_training_weaver_bg_lighter"
+        android:background="@color/ic_training_weaver_bg" />
+
+</FrameLayout>

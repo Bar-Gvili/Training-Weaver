@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Training Weaver</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="drawer_open" />
+    <string name="drawer_close" />
+    <string name="default_web_client_id">
+        54921465012-f0pddamiknb6o0t98t12e4pvblictiur.apps.googleusercontent.com</string>
+    <string name="default_web_client_id_android">
+        54921465012-bofpqqe7100v7d3ikk7jvj0kid6b6ajf.apps.googleusercontent.com</string>
+</resources>

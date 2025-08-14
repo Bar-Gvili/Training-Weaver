@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/loginFragment">
+
+    <fragment
+        android:id="@+id/editExerciseFragment"
+        android:name="com.example.training_weaver.UI.EditExerciseFragment"
+        >
+        <argument
+            android:name="exercise"
+            app:argType="com.example.training_weaver.dataclass.Exercise" />
+        <action
+            android:id="@+id/action_editExerciseFragment_to_exerciseDatabaseFragment"
+            app:destination="@id/exerciseDatabaseFragment" />
+        <action
+            android:id="@+id/action_editExerciseFragment_to_exerciseDatabaseFragment2"
+            app:destination="@id/exerciseDatabaseFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/workoutListFragment"
+        android:name="com.example.training_weaver.UI.WorkoutListFragment"
+        >
+        <action
+            android:id="@+id/action_workoutListFragment_to_workoutNameFragment"
+            app:destination="@id/workoutNameFragment" />
+        <action
+            android:id="@+id/action_workoutListFragment_to_createWorkoutFragment"
+            app:destination="@id/createWorkoutFragment" />
+        <action
+            android:id="@+id/action_workoutListFragment_to_workoutDetailsFragment"
+            app:destination="@id/workoutDetailsFragment" />
+        <action
+            android:id="@+id/action_workoutListFragment_to_exerciseDatabaseFragment"
+            app:destination="@id/exerciseDatabaseFragment" />
+        <action
+            android:id="@+id/action_workoutListFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
+        <!--<argument
+            android:name="routine"
+            app:argType="com.example.training_weaver.dataclass.Routine"/>-->
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/workoutNameFragment"
+        android:name="com.example.training_weaver.UI.WorkoutNameFragment"
+       >
+        <action
+            android:id="@+id/action_workoutNameFragment_to_workoutListFragment"
+            app:destination="@id/workoutListFragment" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.training_weaver.UI.LoginFragment"
+        >
+        <action
+            android:id="@+id/action_loginFragment_to_workoutListFragment"
+            app:destination="@id/exerciseDatabaseFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <!-- view exercises in one playlist -->
+    <fragment
+        android:id="@+id/workoutDetailsFragment"
+        android:name="com.example.training_weaver.UI.WorkoutDetailsFragment"
+        >
+        <argument
+            android:name="routine"
+            app:argType="com.example.training_weaver.dataclass.Routine"/>
+        <action
+            android:id="@+id/action_workoutDetails_to_allExercises"
+            app:destination="@id/allExercisesToAddFragment">
+
+        </action>
+    </fragment>
+
+    <!-- pick from all exercises to add -->~
+    <fragment
+        android:id="@+id/allExercisesToAddFragment"
+        android:name="com.example.training_weaver.UI.AllExercisesToAddToListFragment"
+        >
+        <argument
+            android:name="routineID"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_allExercises_to_editor"
+            app:destination="@id/workoutEditorFragment">
+        </action>
+    </fragment>
+
+    <!-- fill in reps/sets for one picked exercise -->
+    <fragment
+        android:id="@+id/workoutEditorFragment"
+        android:name="com.example.training_weaver.UI.WorkoutEditorFragment"
+        >
+        <argument
+            android:name="routineID"
+            app:argType="string" />
+        <argument
+            android:name="exerciseID"
+            app:argType="string" />
+        <argument
+            android:name="exerciseName"
+            app:argType="string"
+            android:defaultValue="" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/exercisePlayerFragment"
+        android:name="com.example.training_weaver.UI.ExercisePlayerFragment"
+        >
+    </fragment>
+
+    <fragment
+        android:id="@+id/createWorkoutFragment"
+        android:name="com.example.training_weaver.UI.createWorkoutListFragment"
+        >
+    </fragment>
+
+    <fragment
+        android:id="@+id/addExerciseFragment"
+        android:name="com.example.training_weaver.UI.addExerciseFragment"
+        >
+        <action
+            android:id="@+id/action_addExerciseFragment_to_exerciseDatabaseFragment"
+            app:destination="@id/exerciseDatabaseFragment" >
+        </action>
+
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/exerciseDatabaseFragment"
+        android:name="com.example.training_weaver.UI.ExerciseDatabaseFragment"
+        >
+        <action
+            android:id="@+id/action_exerciseDatabaseFragment_to_workoutListFragment"
+            app:destination="@id/workoutListFragment" />
+        <action
+            android:id="@+id/action_exerciseDatabaseFragment_to_addExerciseFragment"
+            app:destination="@id/addExerciseFragment" />
+        <action
+            android:id="@+id/action_exerciseDatabaseFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
+        <argument
+            android:name="exercise"
+            app:argType="com.example.training_weaver.dataclass.Exercise"
+            app:nullable="true"
+            android:defaultValue="@null"/>
+        <action
+            android:id="@+id/action_exerciseDatabaseFragment_to_editExerciseFragment"
+            app:destination="@id/editExerciseFragment" />
+        <action
+            android:id="@+id/action_exerciseDatabaseFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.training_weaver.UI.settingFragment"
+        >
+        <action
+            android:id="@+id/action_settingsFragment_to_exerciseDatabaseFragment"
+            app:destination="@id/exerciseDatabaseFragment" />
+        <action
+            android:id="@+id/action_settingsFragment_to_workoutListFragment"
+            app:destination="@id/workoutListFragment" />
+    </fragment>
+
+
+</navigation>

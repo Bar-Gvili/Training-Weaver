@@ -1,0 +1,15 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_workout_playlists"
+        android:title="Workout Playlists"
+        android:icon="@drawable/ic_playlist"/>
+    <item
+        android:id="@+id/nav_exercises_dataset"
+        android:title="Exercises Database"
+        android:icon="@drawable/ic_exercises"/>
+    <item
+        android:id="@+id/nav_settings"
+        android:title="Settings"
+        android:icon="@drawable/ic_setting"/>
+</menu>

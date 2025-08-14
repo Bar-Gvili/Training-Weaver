@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <group
+        android:pivotX="54"
+        android:pivotY="54"
+        android:scaleX="0.82"
+        android:scaleY="0.82">
+
+        <!-- Left plates -->
+        <path android:fillColor="@color/tw_black" android:pathData="M12,38h10v32h-10z" />
+        <path android:fillColor="@color/tw_black" android:pathData="M24,42h6v24h-6z" />
+
+        <!-- Right plates -->
+        <path android:fillColor="@color/tw_black" android:pathData="M86,38h10v32h-10z" />
+        <path android:fillColor="@color/tw_black" android:pathData="M78,42h6v24h-6z" />
+
+        <!-- Vertical lattice bars -->
+        <path android:fillColor="@color/tw_black" android:pathData="M36,26h6v56h-6z" />
+        <path android:fillColor="@color/tw_black" android:pathData="M46,26h6v56h-6z" />
+        <path android:fillColor="@color/tw_black" android:pathData="M56,26h6v56h-6z" />
+        <path android:fillColor="@color/tw_black" android:pathData="M66,26h6v56h-6z" />
+
+        <!-- Horizontal lattice bars -->
+        <path android:fillColor="@color/tw_black" android:pathData="M30,32h48v6h-48z" />
+        <path android:fillColor="@color/tw_black" android:pathData="M30,46h48v6h-48z" />
+        <path android:fillColor="@color/tw_black" android:pathData="M30,60h48v6h-48z" />
+        <path android:fillColor="@color/tw_black" android:pathData="M30,74h48v6h-48z" />
+
+        <!-- Play triangle -->
+        <path android:fillColor="@color/tw_white" android:pathData="M48,42L48,66L68,54Z" />
+    </group>
+</vector>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/scrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:padding="16dp"
+    android:background="@color/ic_training_weaver_bg_lighter">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- כותרת לדוגמה -->
+        <TextView
+            android:id="@+id/tvExerciseName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Exercise Name"
+            android:textAppearance="?attr/textAppearanceHeadline6"
+            android:layout_marginBottom="24dp"/>
+
+        <!-- שדה למספר חזרות (Sets) -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Sets"
+            app:counterEnabled="false"
+            app:helperTextEnabled="false"
+            android:layout_marginBottom="16dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etSets"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:imeOptions="actionNext"
+                android:background="@color/ic_training_weaver_bg_lighter"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- שדה למספר חזרות (Reps) -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Reps"
+            app:counterEnabled="false"
+            app:helperTextEnabled="false"
+            android:layout_marginBottom="16dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etReps"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:imeOptions="actionNext"
+                android:background="@color/ic_training_weaver_bg_lighter"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- שדה לזמן מנוחה (Rest time in seconds) -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Rest time (sec)"
+            app:counterEnabled="false"
+            app:helperTextEnabled="false"
+            android:layout_marginBottom="24dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etRestTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:imeOptions="actionDone"
+                android:background="@color/ic_training_weaver_bg_lighter"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- כפתור Done -->
+        <Button
+            android:id="@+id/btnDone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Done"
+            android:background="@color/ic_training_weaver_bg"
+        />
+
+    </LinearLayout>
+</ScrollView>

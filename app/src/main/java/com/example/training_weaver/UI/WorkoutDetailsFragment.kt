@@ -47,7 +47,14 @@ class WorkoutDetailsFragment : Fragment() {
 
         adapter = RoutineExercisesAdapter(object : RoutineExercisesAdapter.OnRowAction {
             override fun onClick(row: RoutineRow) {
-                // אפשר לפתוח כאן Editor ל-sets/reps
+                val action =
+                    WorkoutDetailsFragmentDirections
+                        .actionWorkoutDetailsFragmentToEditExerciseInRoutineFragment(
+                            routineID = args.routine.routineID,
+                            indexInRoutine = row.indexInRoutine,
+                            meta = row.meta
+                        )
+                findNavController().navigate(action)
             }
             override fun onRemove(row: RoutineRow) {
                 // הפונקציה למטה מקבלת רק אינדקס, את ה־routineId היא שולפת מ-args

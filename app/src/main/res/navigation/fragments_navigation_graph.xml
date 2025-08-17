@@ -79,7 +79,29 @@
         <action
             android:id="@+id/action_workoutDetailsFragment_to_exercisePlayerFragment"
             app:destination="@id/exercisePlayerFragment" />
+        <action
+            android:id="@+id/action_workoutDetailsFragment_to_editExerciseInRoutineFragment"
+            app:destination="@id/editExerciseInRoutineFragment"/>
     </fragment>
+
+    <fragment
+        android:id="@+id/editExerciseInRoutineFragment"
+        android:name="com.example.training_weaver.UI.EditExerciseInRoutineFragment">
+
+        <argument
+            android:name="routineID"
+            app:argType="string" />
+
+        <argument
+            android:name="indexInRoutine"
+            app:argType="integer" />
+
+        <argument
+            android:name="meta"
+            app:argType="com.example.training_weaver.dataclass.ExerciseInRoutine" />
+    </fragment>
+
+
 
     <!-- pick from all exercises to add -->
     <fragment

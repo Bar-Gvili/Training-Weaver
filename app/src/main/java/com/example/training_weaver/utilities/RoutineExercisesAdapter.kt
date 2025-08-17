@@ -2,51 +2,77 @@ package com.example.training_weaver.utilities
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.PopupMenu
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.training_weaver.databinding.RowExerciseBinding
+import com.example.training_weaver.UI.WorkoutDetailsFragmentDirections
+import com.training_weaver.R
 import com.training_weaver.utilities.RoutineRow
+import com.training_weaver.databinding.ItemRoutineRowBinding
+
 
 class RoutineExercisesAdapter(
-    private val listener: OnRowAction
+    private val onRowAction: OnRowAction
 ) : ListAdapter<RoutineRow, RoutineExercisesAdapter.VH>(DIFF) {
 
     interface OnRowAction {
         fun onRemove(row: RoutineRow)
+        fun onClick(row: RoutineRow)
     }
 
-    inner class VH(private val b: RowExerciseBinding) : RecyclerView.ViewHolder(b.root) {
-        fun bind(row: RoutineRow) {
-            // כותרת ושורת משנה – עדכן לשמות ה-View אצלך ב-binding (title/subtitle/...)
-            b.title.text = row.exercise.exerciseName
-            b.subtitles.text = "Sets: ${row.meta.sets} • Reps: ${row.meta.reps} • Rest: ${row.meta.restTimeSeconds}s"
+    companion object {
+        val DIFF = object : DiffUtil.ItemCallback<RoutineRow>() {
+            override fun areItemsTheSame(oldItem: RoutineRow, newItem: RoutineRow) =
+                oldItem.key == newItem.key
+            override fun areContentsTheSame(oldItem: RoutineRow, newItem: RoutineRow) =
+                oldItem == newItem
+        }
+    }
 
-            // לחיצה ארוכה → הסרת המופע מהרוטינה (אפשר לפתוח תפריט אם תרצה; פה זה ישר מסיר)
+    inner class VH(private val b: ItemRoutineRowBinding) : RecyclerView.ViewHolder(b.root) {
+        fun bind(row: RoutineRow) {
+            b.title.text = row.exercise.exerciseName
+            b.subtitle.text = "${row.meta.sets} x ${row.meta.reps}  •  rest ${row.meta.restTimeSeconds}s"
+
+            // לחיצה רגילה – כניסה/עריכה
+            b.root.setOnClickListener {
+                val action = WorkoutDetailsFragmentDirections
+                    .actionWorkoutDetailsFragmentToExercisePlayerFragment(
+                        row.exercise,
+                        row.meta
+                    )
+                it.findNavController().navigate(action)
+            }
+            // לחיצה ארוכה – מחיקה (בלי כפתור)
             b.root.setOnLongClickListener {
-                listener.onRemove(row)
+                val popup = PopupMenu(b.root.context, b.root)
+                popup.menuInflater.inflate(R.menu.exercise_row_menu, popup.menu)
+                popup.setOnMenuItemClickListener { item ->
+                    when (item.itemId) {
+                        R.id.menu_edit -> {
+                            onRowAction.onClick(row)   // נשתמש ב־onClick כ"עריכה"
+                            true
+                        }
+                        R.id.menu_delete -> {
+                            onRowAction.onRemove(row)
+                            true
+                        }
+                        else -> false
+                    }
+                }
+                popup.show()
                 true
             }
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
-        val inflater = LayoutInflater.from(parent.context)
-        val binding = RowExerciseBinding.inflate(inflater, parent, false)
+        val inf = LayoutInflater.from(parent.context)
+        val binding = ItemRoutineRowBinding.inflate(inf, parent, false)
         return VH(binding)
     }
 
-    override fun onBindViewHolder(holder: VH, position: Int) {
-        holder.bind(getItem(position))
-    }
-
-    companion object {
-        private val DIFF = object : DiffUtil.ItemCallback<RoutineRow>() {
-            override fun areItemsTheSame(oldItem: RoutineRow, newItem: RoutineRow): Boolean =
-                oldItem.key == newItem.key
-
-            override fun areContentsTheSame(oldItem: RoutineRow, newItem: RoutineRow): Boolean =
-                oldItem == newItem
-        }
-    }
+    override fun onBindViewHolder(holder: VH, position: Int) = holder.bind(getItem(position))
 }

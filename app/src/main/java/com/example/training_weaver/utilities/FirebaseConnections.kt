@@ -23,7 +23,7 @@ import com.google.firebase.firestore.ListenerRegistration
  * ├─ exercises/{exerciseId} → { exerciseID, exerciseName, exerciseDescription, url }
  * └─ routines/{routineId}  → { routineID, routineName, list: [ { exerciseID, sets, reps, restTimeSeconds } ] }
  */
-class FirebaseConnections {
+class   FirebaseConnections {
 
     // --- Firebase singletons ---
     private val auth = FirebaseAuth.getInstance()
@@ -430,6 +430,99 @@ class FirebaseConnections {
             routineName = getString("routineName") ?: "",
             exerciseIDs = parsed
         )
+    }
+
+    private fun addExerciseAtIndex(
+        UID: String,
+        routineID: String,
+        index: Int,
+        item: ExerciseInRoutine,
+        onComplete: (Boolean) -> Unit
+    ) {
+        val ref = db.collection("users").document(UID)
+            .collection("routines")
+            .document(routineID)
+
+        db.runTransaction { tr ->
+            val snap = tr.get(ref)
+            val current = (snap.get("list") as? List<*>)?.mapNotNull { it as? Map<*, *> }?.toMutableList() ?: mutableListOf()
+            val safeIndex = index.coerceIn(0, current.size)
+            current.add(safeIndex, exerciseInRoutineToMap(item)) // משתמשים במיפוי הקיים
+            tr.update(ref, "list", current)
+        }.addOnSuccessListener { onComplete(true) }
+            .addOnFailureListener { onComplete(false) }
+    }
+
+
+    private fun updateExerciseAtIndex(
+        UID: String,
+        routineID: String,
+        index: Int,
+        newMeta: ExerciseInRoutine,
+        onComplete: (Boolean) -> Unit
+    ) {
+        val ref = db.collection("users").document(UID)
+            .collection("routines")
+            .document(routineID)
+
+        db.runTransaction { tr ->
+            val snap = tr.get(ref)
+            val current = (snap.get("list") as? List<*>)?.mapNotNull { it as? Map<*, *> }?.toMutableList() ?: mutableListOf()
+            if (index !in current.indices) error("Index out of bounds")
+            current[index] = exerciseInRoutineToMap(newMeta) // משתמשים במיפוי הקיים
+            tr.update(ref, "list", current)
+        }.addOnSuccessListener { onComplete(true) }
+            .addOnFailureListener { onComplete(false) }
+    }
+
+    private fun removeExerciseAtIndex(
+        UID: String,
+        routineID: String,
+        index: Int,
+        onComplete: (Boolean) -> Unit
+    ) {
+        val ref = db.collection("users").document(UID)
+            .collection("routines")
+            .document(routineID)
+
+        db.runTransaction { tr ->
+            val snap = tr.get(ref)
+            val current = (snap.get("list") as? List<*>)?.mapNotNull { it as? Map<*, *> }?.toMutableList() ?: mutableListOf()
+            if (index !in current.indices) error("Index out of bounds")
+            current.removeAt(index)
+            tr.update(ref, "list", current)
+        }.addOnSuccessListener { onComplete(true) }
+            .addOnFailureListener { onComplete(false) }
+    }
+
+
+    fun addExerciseAtIndex(
+        routineId: String,
+        index: Int,
+        item: ExerciseInRoutine,
+        onComplete: (Boolean) -> Unit
+    ) {
+        val uid = uidOrNull() ?: return onComplete(false)
+        addExerciseAtIndex(uid, routineId, index, item, onComplete)
+    }
+
+    fun updateExerciseAtIndex(
+        routineId: String,
+        index: Int,
+        newMeta: ExerciseInRoutine,
+        onComplete: (Boolean) -> Unit
+    ) {
+        val uid = uidOrNull() ?: return onComplete(false)
+        updateExerciseAtIndex(uid, routineId, index, newMeta, onComplete)
+    }
+
+    fun removeExerciseAtIndex(
+        routineId: String,
+        index: Int,
+        onComplete: (Boolean) -> Unit
+    ) {
+        val uid = uidOrNull() ?: return onComplete(false)
+        removeExerciseAtIndex(uid, routineId, index, onComplete)
     }
 
 }

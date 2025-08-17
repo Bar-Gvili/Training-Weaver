@@ -65,6 +65,7 @@ dependencies {
     implementation(libs.firebase.auth.ktx.v2231)
     implementation(libs.androidx.recyclerview)
     implementation(libs.firebase.bom)
+    implementation(libs.core)
 
 
 

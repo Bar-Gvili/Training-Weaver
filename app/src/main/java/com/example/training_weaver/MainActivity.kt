@@ -4,6 +4,7 @@ import android.content.res.Configuration
 import android.os.Bundle
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
@@ -78,6 +79,8 @@ class MainActivity : AppCompatActivity() {
             binding.drawerLayout.closeDrawer(GravityCompat.START)
             true
         }
+        toggle.drawerArrowDrawable.color = ContextCompat.getColor(this, R.color.ic_training_weaver_bg) // או כל צבע
+
     }
 
     // Handle the Up button with the drawer/graph

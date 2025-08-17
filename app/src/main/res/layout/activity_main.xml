@@ -19,7 +19,9 @@
             android:background="?attr/colorPrimary"
             app:title="Training Weaver"
             app:titleTextColor="?attr/colorOnPrimary"
-            android:layout_marginTop="20dp"/>
+            android:layout_marginTop="20dp"
+            app:navigationIconTint="@color/ic_training_weaver_bg"
+            />
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/nav_host_fragment"

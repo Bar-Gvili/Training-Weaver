@@ -75,12 +75,13 @@
             app:argType="com.example.training_weaver.dataclass.Routine"/>
         <action
             android:id="@+id/action_workoutDetails_to_allExercises"
-            app:destination="@id/allExercisesToAddFragment">
-
-        </action>
+            app:destination="@id/allExercisesToAddFragment"/>
+        <action
+            android:id="@+id/action_workoutDetailsFragment_to_exercisePlayerFragment"
+            app:destination="@id/exercisePlayerFragment" />
     </fragment>
 
-    <!-- pick from all exercises to add -->~
+    <!-- pick from all exercises to add -->
     <fragment
         android:id="@+id/allExercisesToAddFragment"
         android:name="com.example.training_weaver.UI.AllExercisesToAddToListFragment"
@@ -116,6 +117,15 @@
         android:id="@+id/exercisePlayerFragment"
         android:name="com.example.training_weaver.UI.ExercisePlayerFragment"
         >
+
+        <argument
+            android:name="exercise"
+            app:argType="com.example.training_weaver.dataclass.Exercise" />
+        <argument
+            android:name="meta"
+            app:argType="com.example.training_weaver.dataclass.ExerciseInRoutine"
+            app:nullable="true" />
+
     </fragment>
 
     <fragment

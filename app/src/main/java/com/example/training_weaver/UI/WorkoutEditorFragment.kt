@@ -26,7 +26,6 @@ class WorkoutEditorFragment : Fragment(R.layout.fragment_workout_editor) {
         _b = FragmentWorkoutEditorBinding.bind(view) // ← היה חסר, גרם ל-NPE
 
         // אם תרצה להציג את שם התרגיל שנשלח:
-        // b.tvExerciseTitle.text = args.exerciseName
 
         b.btnDone.setOnClickListener {
             val sets = b.etSets.text?.toString()?.toIntOrNull()
